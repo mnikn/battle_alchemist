@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://components/drag_drop/Draggable.gd" type="Script" id=1]
+[ext_resource path="res://Card.gd" type="Script" id=2]
+
+[node name="Card" type="PanelContainer"]
+margin_right = 150.0
+margin_bottom = 168.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 143.0
+margin_bottom = 161.0
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 132.0
+margin_bottom = 150.0
+custom_constants/separation = 4
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+margin_right = 128.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 128, 128 )
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 132.0
+margin_right = 128.0
+margin_bottom = 146.0
+text = "Fire"
+align = 1
+valign = 1
+
+[node name="Draggable" type="Node2D" parent="."]
+script = ExtResource( 1 )
+target_group = "SkillInput"
