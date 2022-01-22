@@ -11,24 +11,22 @@ onready var DialogueContent = $UI/BottomPanel/MarginContainer/HBoxContainer/Dial
 
 onready var SkillItemScene = preload("res://SkillItem.tscn")
 
-export (Dictionary) var enmey = Constants.CREATURES.balrog
+export (Dictionary) var enmey
 
 const DAMAGE_DIALOGUE = "{enemy}向你发起攻击,你受到 {damage} 点伤害!"
 const LOSE_DIALOGUE = "你倒下了!"
 const ENEMY_DAMAGE_DIALOGUE = "你发动技能{skill},对{enemy}造成 {damage} 点伤害!"
 const ENEMY_DEFEATED = "{enemy}倒下了,你打败了{enemy}!"
 
-var physic_elements = ["fire", "mud", "ice", "water"]
-var mental_elements = ["courage", "crash", "cool", "firm"]
-
 var state = {
 	"skills": [],
-	"elements": [Constants.ELEMENTS.fire, Constants.ELEMENTS.concentrated],
+	"elements": [],
 	"hp": {
 		"max_hp": 20,
 		"current_hp": 20
 	}
 }
+
 
 func _ready():
 	$Systhesis/SysthesisContainer.visible = false
@@ -95,6 +93,7 @@ func use_skill(skill):
 				"enemy": self.enmey.name
 			})), "completed")
 			self.emit_signal("battle_finished", true)
+			return
 		
 	self.next_term()
 
@@ -131,5 +130,6 @@ func next_term():
 	if self.state.hp.current_hp <= 0:
 		yield(self.show_dialogue(LOSE_DIALOGUE), "completed")
 		self.emit_signal("battle_finished", false)
+		return
 	self.show_action_panel()
 	

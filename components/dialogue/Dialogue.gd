@@ -52,8 +52,20 @@ func _on_Logic_show_sentence(sentence, data):
 	for item in self.Options.get_children():
 		self.Options.remove_child(item)
 	self.Content.visible = true
-
+	
 	var content = sentence.content
+	if sentence.has("actor"):
+		if content.find("%talk_end") != -1:
+			content = content.replace("%talk_end", "]")
+			content = "[" + content
+		else:
+			content = "【" + content + "】"
+		self.Actor.text = sentence.actor
+		self.Actor.visible = true
+	if sentence.has("portrait"):
+		self.PortraitContainer.visible = true
+		self.Portrait.texture = load(sentence.portrait)
+
 	for key in data:
 		content = content.replace("{{" + key + "}}", data[key])
 	self.Content.bbcode_text = content

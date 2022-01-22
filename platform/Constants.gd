@@ -34,6 +34,11 @@ const ELEMENTS = {
 		"id": "fire",
 		"name": "火"
 	},
+	"water": {
+		"type": "physic",
+		"id": "water",
+		"name": "水"
+	},
 	"mud": {
 		"type": "physic",
 		"id": "mud",
@@ -71,6 +76,7 @@ const CREATURES = {
 			"current_hp": 3
 		},
 		"weak": ["fire_ball"],
+		"strong": ["water_ball"],
 		"attack": [1,1]
 	},
 	"skleton": {
