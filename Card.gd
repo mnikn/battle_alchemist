@@ -1,3 +1,6 @@
 extends PanelContainer
 
-var data = "as"
+var data
+
+func _ready():
+	$MarginContainer/VBoxContainer/Label.text = self.data.name

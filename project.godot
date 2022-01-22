@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "ObjectUtils",
 "language": "GDScript",
 "path": "res://utils/Object.gd"
+}, {
+"base": "Node",
+"class": "RandomUtils",
+"language": "GDScript",
+"path": "res://utils/Random.gd"
 } ]
 _global_script_class_icons={
 "ArrayUtils": "",
 "DragDropTarget": "",
 "Draggable": "",
 "NodeUtils": "",
-"ObjectUtils": ""
+"ObjectUtils": "",
+"RandomUtils": ""
 }
 
 [application]

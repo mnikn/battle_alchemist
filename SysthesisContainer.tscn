@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Card.tscn" type="PackedScene" id=1]
 [ext_resource path="res://CardSkillChannel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Taipei-Sans-TC-Beta-Regular-2.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://SysthesisContainer.gd" type="Script" id=4]
-[ext_resource path="res://components/dialogue/Dialgoure.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 3 )
@@ -63,21 +61,12 @@ align = 1
 valign = 1
 
 [node name="Label2" type="Label" parent="Output/MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 182.0
-margin_right = 332.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 150, 0 )
-text = "精神"
-align = 1
-valign = 1
-
-[node name="Label3" type="Label" parent="Output/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 576.0
 margin_right = 726.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 150, 0 )
 size_flags_horizontal = 10
-text = "结果"
+text = "精神"
 align = 1
 valign = 1
 
@@ -92,24 +81,21 @@ __meta__ = {
 }
 
 [node name="Input1" parent="Output/MarginContainer/VBoxContainer/HBoxContainer" groups=["SkillInput"] instance=ExtResource( 2 )]
-
-[node name="Input2" parent="Output/MarginContainer/VBoxContainer/HBoxContainer" groups=["SkillInput"] instance=ExtResource( 2 )]
-margin_left = 182.0
-margin_right = 332.0
+target_type = "physic"
 
 [node name="Generate" type="Button" parent="Output/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 364.0
+margin_left = 182.0
 margin_top = 72.0
-margin_right = 529.0
+margin_right = 544.0
 margin_bottom = 95.0
 size_flags_horizontal = 7
 size_flags_vertical = 4
 text = "合成!"
 
-[node name="Ouput" parent="Output/MarginContainer/VBoxContainer/HBoxContainer" groups=["SkillOutput"] instance=ExtResource( 2 )]
+[node name="Input2" parent="Output/MarginContainer/VBoxContainer/HBoxContainer" groups=["SkillInput"] instance=ExtResource( 2 )]
 margin_left = 576.0
 margin_right = 726.0
-size_flags_horizontal = 10
+target_type = "mental"
 
 [node name="BottomPanel" type="Panel" parent="."]
 anchor_top = 1.0
@@ -141,90 +127,6 @@ custom_constants/vseparation = 12
 custom_constants/hseparation = 7
 columns = 8
 
-[node name="PanelContainer" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_bottom = 171.0
-
-[node name="PanelContainer2" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 157.0
-margin_right = 307.0
-margin_bottom = 171.0
-
-[node name="PanelContainer3" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 314.0
-margin_right = 464.0
-margin_bottom = 171.0
-
-[node name="PanelContainer4" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 471.0
-margin_right = 621.0
-margin_bottom = 171.0
-
-[node name="PanelContainer5" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 628.0
-margin_right = 778.0
-margin_bottom = 171.0
-
-[node name="PanelContainer6" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 785.0
-margin_right = 935.0
-margin_bottom = 171.0
-
-[node name="PanelContainer7" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 942.0
-margin_right = 1092.0
-margin_bottom = 171.0
-
-[node name="PanelContainer8" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 1099.0
-margin_right = 1249.0
-margin_bottom = 171.0
-
-[node name="PanelContainer9" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_top = 183.0
-margin_bottom = 354.0
-
-[node name="PanelContainer10" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 157.0
-margin_top = 183.0
-margin_right = 307.0
-margin_bottom = 354.0
-
-[node name="PanelContainer11" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 314.0
-margin_top = 183.0
-margin_right = 464.0
-margin_bottom = 354.0
-
-[node name="PanelContainer12" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 471.0
-margin_top = 183.0
-margin_right = 621.0
-margin_bottom = 354.0
-
-[node name="PanelContainer13" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 628.0
-margin_top = 183.0
-margin_right = 778.0
-margin_bottom = 354.0
-
-[node name="PanelContainer14" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 785.0
-margin_top = 183.0
-margin_right = 935.0
-margin_bottom = 354.0
-
-[node name="PanelContainer15" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 942.0
-margin_top = 183.0
-margin_right = 1092.0
-margin_bottom = 354.0
-
-[node name="PanelContainer16" parent="BottomPanel/MarginContainer/GridContainer" instance=ExtResource( 1 )]
-margin_left = 1099.0
-margin_top = 183.0
-margin_right = 1249.0
-margin_bottom = 354.0
-
 [node name="Back" type="Button" parent="BottomPanel"]
 margin_left = 576.0
 margin_right = 726.0
@@ -241,6 +143,6 @@ color = Color( 0.596078, 0.596078, 0.596078, 1 )
 [node name="Popups" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="Dialogue" parent="Popups" instance=ExtResource( 5 )]
-
+[connection signal="snap_change" from="Output/MarginContainer/VBoxContainer/HBoxContainer/Input1" to="." method="on_snap_change"]
 [connection signal="pressed" from="Output/MarginContainer/VBoxContainer/HBoxContainer/Generate" to="." method="_on_Generate_pressed"]
+[connection signal="snap_change" from="Output/MarginContainer/VBoxContainer/HBoxContainer/Input2" to="." method="on_snap_change"]

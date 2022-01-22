@@ -1,14 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://components/drag_drop/DragDropTarget.gd" type="Script" id=1]
+[ext_resource path="res://DragDropTarget.gd" type="Script" id=1]
+[ext_resource path="res://CardSkillChannel.gd" type="Script" id=2]
 
 [node name="Card" type="PanelContainer"]
 margin_right = 150.0
 margin_bottom = 168.0
 rect_min_size = Vector2( 150, 168 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="DragDropTarget" type="Node2D" parent="."]
 script = ExtResource( 1 )
+
+[connection signal="on_snap_node" from="DragDropTarget" to="." method="_on_DragDropTarget_on_snap_node"]
+[connection signal="on_snap_remove" from="DragDropTarget" to="." method="_on_DragDropTarget_on_snap_remove"]

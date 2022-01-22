@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Battle.gd" type="Script" id=1]
 [ext_resource path="res://SysthesisContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/theme/Normal.tres" type="DynamicFont" id=3]
+[ext_resource path="res://hp_bar/Hp.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
@@ -75,7 +76,6 @@ margin_bottom = 136.0
 rect_min_size = Vector2( 480, 0 )
 
 [node name="ActionPanel" type="PanelContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer"]
-visible = false
 margin_left = 486.0
 margin_right = 1256.0
 margin_bottom = 136.0
@@ -154,6 +154,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="Dialogue" type="PanelContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer"]
+visible = false
 margin_left = 486.0
 margin_right = 1256.0
 margin_bottom = 136.0
@@ -209,13 +210,13 @@ margin_right = 282.0
 margin_bottom = 17.0
 text = "金"
 
-[node name="Label2" type="ProgressBar" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 45.0
+[node name="Hp" parent="UI/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_top = 38.0
 margin_right = 282.0
 margin_bottom = 62.0
+size_flags_horizontal = 3
 size_flags_vertical = 10
-max_value = 5.0
-value = 5.0
 
 [node name="Mask" type="CanvasModulate" parent="."]
 visible = false
@@ -230,6 +231,7 @@ visible = false
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/GenerateSkill" to="." method="_on_GenerateSkill_pressed"]
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/SkillPanel/Back" to="." method="_on_SkillPanelBack_pressed"]
 [connection signal="generate_finished" from="Systhesis/SysthesisContainer" to="." method="_on_SysthesisContainer_generate_finished"]
+[connection signal="visibility_changed" from="Systhesis/SysthesisContainer" to="Systhesis/SysthesisContainer" method="_on_SysthesisContainer_visibility_changed"]
 [connection signal="pressed" from="Systhesis/SysthesisContainer/BottomPanel/Back" to="." method="_on_SysthesisBack_pressed"]
 
 [editable path="Systhesis/SysthesisContainer"]
