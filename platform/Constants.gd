@@ -163,7 +163,8 @@ const CREATURES = {
 		},
 		"weak": ["fire_ball", "fire_missile", "big_fire_ball", "fire_rain"],
 		"strong": ["water_ball", "big_rain"],
-		"attack": [1,1]
+		"attack": [1,1],
+		"portrait": "res://assets/creatures/slime.png"
 	},
 	"skleton": {
 		"id": "skleton",
@@ -174,7 +175,8 @@ const CREATURES = {
 		},
 		"weak": ["stone_crash"],
 		"strong": ["fire_ball"],
-		"attack": [2,4]
+		"attack": [2,4],
+		"portrait": "res://assets/creatures/slime.png"
 	},
 	"troll": {
 		"id": "troll",
@@ -185,7 +187,8 @@ const CREATURES = {
 		},
 		"weak": ["fire_ball", "big_fire_ball"],
 		"strong": [],
-		"attack": [3,6]
+		"attack": [3,6],
+		"portrait": "res://assets/creatures/slime.png"
 	},
 	"balrog": {
 		"id": "balrog",
@@ -196,7 +199,8 @@ const CREATURES = {
 		},
 		"weak": ["water_ball", "big_rain"],
 		"strong": ["fire_ball", "big_fire_ball"],
-		"attack": [4,7]
+		"attack": [4,7],
+		"portrait": "res://assets/creatures/slime.png"
 	},
 	"king": {
 		"id": "king",
@@ -208,5 +212,6 @@ const CREATURES = {
 		"attack": [6,10],
 		"weak": [],
 		"strong": [],
+		"portrait": "res://assets/creatures/slime.png"
 	}
 }
