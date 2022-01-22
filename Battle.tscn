@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Battle.gd" type="Script" id=1]
 [ext_resource path="res://SysthesisContainer.tscn" type="PackedScene" id=2]
@@ -17,6 +17,8 @@
 [ext_resource path="res://assets/gui/battle/portrait_container.png" type="Texture" id=15]
 [ext_resource path="res://assets/gui/battle/bg.png" type="Texture" id=16]
 [ext_resource path="res://assets/gui/battle/canvas_stand_point.png" type="Texture" id=17]
+[ext_resource path="res://assets/creatures/jin.png" type="Texture" id=18]
+[ext_resource path="res://assets/creatures/slime.png" type="Texture" id=19]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
@@ -61,10 +63,24 @@ expand = true
 
 [node name="Player" type="TextureRect" parent="Canvas"]
 margin_left = 224.0
-margin_top = 463.0
+margin_top = 485.0
 margin_right = 704.0
-margin_bottom = 673.0
+margin_bottom = 695.0
 texture = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="TextureRect" parent="Canvas/Player"]
+margin_left = 70.0
+margin_top = -182.0
+margin_right = 326.0
+margin_bottom = 74.0
+texture = ExtResource( 18 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Enemy" type="TextureRect" parent="Canvas"]
 margin_left = 766.0
@@ -72,6 +88,17 @@ margin_top = 141.0
 margin_right = 1246.0
 margin_bottom = 269.0
 texture = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="TextureRect" parent="Canvas/Enemy"]
+margin_left = 151.0
+margin_top = -94.0
+margin_right = 311.0
+margin_bottom = 92.0
+texture = ExtResource( 19 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -288,7 +315,7 @@ custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
-margin_top = 464.0
+margin_top = 462.0
 margin_right = 320.0
 margin_bottom = 564.0
 rect_min_size = Vector2( 320, 100 )
