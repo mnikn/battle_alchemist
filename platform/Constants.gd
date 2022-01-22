@@ -176,7 +176,7 @@ const CREATURES = {
 		"weak": ["stone_crash"],
 		"strong": ["fire_ball"],
 		"attack": [2,4],
-		"portrait": "res://assets/creatures/slime.png"
+		"portrait": "res://assets/creatures/skleton.png"
 	},
 	"troll": {
 		"id": "troll",
