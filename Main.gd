@@ -21,7 +21,8 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
-		"content": "能够打倒魔王的,ko no 金 da!"
+		"portrait": "res://assets/jin.png",
+		"content": "能够打倒魔王的,kono 金哒!"
 	}]), "completed")
 	
 	yield(self.show_dialogue([{
@@ -39,10 +40,12 @@ func _ready():
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "史莱姆吗,我印象中这种生物比较怕火."
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "合成一些火相关的技能应该就能打倒它."
 	}]), "completed")
 	var slime_win = yield(slime_battle, "battle_finished")
@@ -73,6 +76,7 @@ func _ready():
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "唔,骷髅这种生物，用火烧还是用水泡对它都没什么影响."
 	}, {
 		"type": "sentence",
