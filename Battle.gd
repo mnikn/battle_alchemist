@@ -19,6 +19,7 @@ const ENEMY_DAMAGE_DIALOGUE = "你发动技能{skill},对{enemy}造成 {damage} 
 const ENEMY_DEFEATED = "{enemy}倒下了,你打败了{enemy}!"
 const HEAL = "你发动技能{skill},恢复了 {value} 点 hp!"
 const DEFENSE = "你发动技能{skill},接下来受到的伤害会减少 {value}!"
+const ATTACK = "你发动技能{skill},接下来攻击伤害增加 {value}!"
 
 var state = {
 	"skills": [],
@@ -86,6 +87,9 @@ func use_skill(skill):
 			damage = skill.critical_damage
 		elif skill.id in self.enemy.strong:
 			damage = skill.weak_damage
+		for item in self.state.buffer_skills.values():
+			if item.has("attack"):
+				damage += item.attack
 		self.enemy.hp.current_hp -= damage
 		yield(self.show_dialogue(ENEMY_DAMAGE_DIALOGUE.format({
 			"enemy": self.enemy.name,
@@ -113,41 +117,57 @@ func use_skill(skill):
 		NodeUtils.clear_children(BufferList)
 		for item in self.state.buffer_skills.values():
 			var node = Label.new()
-			node.text = "{skill}:受到的伤害减少 {value}".format({
+			node.set("custom_colors/font_color", Color("#000"))
+			if item.has("defense"):
+				node.text = "{skill}:受到的伤害减少 {value}".format({
+					"skill": item.name,
+					"value": item.defense
+				})
+			elif item.has("attack"):
+				node.text = "{skill}:攻击伤害增加 {value}".format({
+					"skill": item.name,
+					"value": item.attack
+				})
+			BufferList.add_child(node)
+		if skill.has("defense"):
+			yield(self.show_dialogue(DEFENSE.format({
 				"skill": skill.name,
 				"value": skill.defense
-			})
-			BufferList.add_child(node)
-		yield(self.show_dialogue(DEFENSE.format({
-			"skill": skill.name,
-			"value": skill.defense
-		})), "completed")
+			})), "completed")
+		elif skill.has("attack"):
+			yield(self.show_dialogue(ATTACK.format({
+				"skill": skill.name,
+				"value": skill.attack
+			})), "completed")
 	self.next_term()
 
 func _on_SysthesisContainer_generate_finished(skill, physic, mental):
 	self._on_SysthesisBack_pressed()
+	$UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/GenerateSkill.disabled = true
 	if skill == null:
-		self.next_term()
 		return
 	if ArrayUtils.find(self.state.skills, { "id": skill.id}) != null:
-		self.next_term()
 		return
 
 	var skill_res = []
 	for item in self.state.skills:
 		if item.id != physic.id:
 			skill_res.push_back(item)
+		else:
+			physic = {"id": ""}
 	self.state.skills = skill_res
 	
 	var element_res = []
 	for item in self.state.elements:
 		if item.id != physic.id and item.id != mental.id:
 			element_res.push_back(item)
+		elif item.id == physic.id:
+			physic = {"id": ""}
+		elif item.id == mental.id:
+			mental = {"id": ""}
 	self.state.elements = element_res
 	
 	self.state.skills.push_back(skill)
-	
-	self.next_term()
 	
 func show_action_panel():
 	self.Dialogue.visible = false
@@ -156,10 +176,12 @@ func show_action_panel():
 	self.SummaryPanel.visible = true
 	
 func next_term():
+	$UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/GenerateSkill.disabled = false
 	var damage = round(RandomUtils.dice_range(self.enemy.attack))
 	var defense = 0
 	for item in self.state.buffer_skills.values():
-		defense += item.defense
+		if item.has("defense"):
+			defense += item.defense
 	damage = max(damage - defense, 0)
 	var origin_hp = self.state.hp.current_hp
 	self.state.hp.current_hp = max(self.state.hp.current_hp - damage, 0)

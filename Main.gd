@@ -5,7 +5,28 @@ var GameOverScene = preload("./game_over/GameOver.tscn")
 var DialogueScene = preload("res://components/dialogue/Dialogue.tscn")
 
 func _ready():
-	$Mask.visible = false
+	$Mask.visible = false	
+	var test_battle = self.create_battle(Constants.CREATURES.troll, 
+	[
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.water,
+		Constants.ELEMENTS.water,
+		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.crash,
+		Constants.ELEMENTS.crash
+	])
+	yield(test_battle, "battle_finished")
+	
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"content": "你叫金,是一个元素炼成师."
@@ -22,7 +43,7 @@ func _ready():
 		"type": "sentence",
 		"actor": "金",
 		"portrait": "res://assets/jin.png",
-		"content": "能够打倒魔王的,kono 金哒!"
+		"content": "能够打倒魔王的,只有 kono 金哒!"
 	}]), "completed")
 	
 	yield(self.show_dialogue([{
@@ -32,10 +53,7 @@ func _ready():
 	var slime_battle = self.create_battle(Constants.CREATURES.slime,
 	[
 		Constants.ELEMENTS.fire, 
-		Constants.ELEMENTS.water,
-		Constants.ELEMENTS.concentrated,
-		Constants.ELEMENTS.concentrated,
-		Constants.ELEMENTS.warm
+		Constants.ELEMENTS.concentrated
 	])
 	yield(self.show_dialogue([{
 		"type": "sentence",
@@ -67,10 +85,7 @@ func _ready():
 		Constants.ELEMENTS.mud,
 		Constants.ELEMENTS.warm,
 		Constants.ELEMENTS.concentrated,
-		Constants.ELEMENTS.concentrated,
 		Constants.ELEMENTS.firm,
-		Constants.ELEMENTS.firm,
-		Constants.ELEMENTS.crash,
 		Constants.ELEMENTS.crash
 	])
 	yield(self.show_dialogue([{
@@ -98,13 +113,21 @@ func _ready():
 	}]), "completed")
 	var troll_battle = self.create_battle(Constants.CREATURES.troll, 
 	[
-		Constants.ELEMENTS.fire, 
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.concentrated,
 		Constants.ELEMENTS.concentrated,
 		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.firm,
 		Constants.ELEMENTS.firm,
 		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.crash,
 		Constants.ELEMENTS.crash
 	])
 	yield(self.show_dialogue([{
@@ -120,7 +143,6 @@ func _ready():
 	
 	yield(self.show_dialogue([{
 		"type": "sentence",
-		"portrait": "res://assets/jin.png",
 		"content": "你已经很接近魔王的位置了.当你走到魔王的门前,炎魔出现在你面前."
 	}, {
 		"type": "sentence",
@@ -134,11 +156,21 @@ func _ready():
 	}]), "completed")
 	var balrog_battle = self.create_battle(Constants.CREATURES.balrog, 
 	[
-		Constants.ELEMENTS.fire, 
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.mud,
 		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.warm,
 		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.crash,
 		Constants.ELEMENTS.crash
 	])
 	var balrog_win = yield(balrog_battle, "battle_finished")
@@ -191,10 +223,21 @@ func _ready():
 	}]), "completed")
 	var king_battle = self.create_battle(Constants.CREATURES.king, 
 	[
-		Constants.ELEMENTS.fire, 
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.fire,
+		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.mud,
 		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.wrath,
+		Constants.ELEMENTS.crash,
 		Constants.ELEMENTS.crash
 	])
 	var king_win = yield(king_battle, "battle_finished")

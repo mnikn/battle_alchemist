@@ -17,19 +17,25 @@ const SKILLS = {
 		"normal_damage": 2,
 		"critical_damage": 5
 	},
-	"fire_shield": {
-		"id": "fire_shield",
+	"fire_attack": {
+		"id": "fire_attack",
 		"type": "buffer",
-		"name": "火盾",
-		"defense": 2,
+		"name": "炙热能量",
+		"attack": 2,
+	},
+	"big_fire_attack": {
+		"id": "big_fire_attack",
+		"type": "buffer",
+		"name": "灼热力量",
+		"attack": 5
 	},
 	"fire_whip": {
 		"id": "fire_whip",
 		"type": "attack",
 		"name": "火鞭",
-		"weak_damage": 1,
-		"normal_damage": 2,
-		"critical_damage": 5
+		"weak_damage": 2,
+		"normal_damage": 3,
+		"critical_damage": 6
 	},
 	"big_fire_ball": {
 		"id": "big_fire_ball",
@@ -80,10 +86,30 @@ const SKILLS = {
 	"stone_crash": {
 		"id": "stone_crash",
 		"type": "attack",
-		"name": "地震术",
+		"name": "落石",
+		"weak_damage": 1,
+		"normal_damage": 2,
+		"critical_damage": 10
+	},
+	"stone_spike": {
+		"id": "stone_crash",
+		"type": "attack",
+		"name": "土锥术",
 		"weak_damage": 1,
 		"normal_damage": 2,
 		"critical_damage": 5
+	},
+	"stone_shield": {
+		"id": "stone_shield",
+		"type": "buffer",
+		"name": "土墙术",
+		"defense": 2
+	},
+	"big_stone_shield": {
+		"id": "big_stone_shield",
+		"type": "buffer",
+		"name": "土壳术",
+		"defense": 5
 	}
 }
 
@@ -123,7 +149,7 @@ const ELEMENTS = {
 	"warm": {
 		"type": "mental",
 		"id": "warm",
-		"name": "温暖"
+		"name": "柔和"
 	},
 	"wrath": {
 		"type": "mental",
@@ -135,7 +161,8 @@ const ELEMENTS = {
 const GENERATE_SKILL_TABLE = [
 	["fire", "concentrated", "fire_ball"],
 	["fire", "firm", "fire_missile"],
-	["fire", "warm", "fire_shield"],
+	["fire", "warm", "fire_attack"],
+	["fire_attack", "warm", "big_fire_attack"],
 	["fire", "wrath", "fire_whip"],
 	["fire_ball", "firm", "big_fire_ball"],
 	["big_fire_ball", "firm", "fire_rain"],
@@ -148,6 +175,9 @@ const GENERATE_SKILL_TABLE = [
 	["water_ball", "firm", "big_rain"],
 	
 	["mud", "crash", "stone_crash"],
+	["mud", "firm", "stone_pike"],
+	["mud", "warm", "stone_shield"],
+	["stone_shield", "firm", "big_stone_shield"],
 	
 	["mud", "cool", "petrification"],
 	["ice", "cool", "frezz"]
