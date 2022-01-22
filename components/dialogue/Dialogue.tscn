@@ -1,0 +1,229 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/gui/dialogue/dialogue_avatar_container.png" type="Texture" id=1]
+[ext_resource path="res://assets/gui/dialogue/dialogue.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/dialogue/dialogue_inditcor.png" type="Texture" id=3]
+[ext_resource path="res://components/dialogue/Dialogue.gd" type="Script" id=4]
+[ext_resource path="res://components/dialogue/Logic.gd" type="Script" id=5]
+[ext_resource path="res://assets/fonts/Taipei-Sans-TC-Beta-Regular-2.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+Label/icons/Label = null
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 320, 90 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 18
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 18
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=4]
+loop = true
+
+[sub_resource type="Animation" id=5]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Layout/Indictor:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.9, 0.94 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Layout/Indictor:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.9, 0.94 ]
+}
+
+[node name="Dialogue" type="PopupDialog"]
+anchor_left = 0.5
+anchor_top = 0.97
+anchor_right = 0.5
+anchor_bottom = 0.97
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+rect_min_size = Vector2( 800, 200 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+popup_exclusive = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Layout"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 45
+custom_constants/margin_top = 35
+custom_constants/margin_left = 45
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="HBoxContainer" parent="Layout/MarginContainer"]
+margin_left = 45.0
+margin_top = 35.0
+margin_right = 755.0
+margin_bottom = 180.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PortraitContainer" type="TextureRect" parent="Layout/MarginContainer/Layout"]
+margin_right = 132.0
+margin_bottom = 132.0
+rect_min_size = Vector2( 132, 132 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Layout/MarginContainer/Layout/PortraitContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -66.0
+margin_top = -66.0
+margin_right = 66.0
+margin_bottom = 66.0
+custom_constants/margin_right = 2
+custom_constants/margin_top = 2
+custom_constants/margin_left = 2
+custom_constants/margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portrait" type="TextureRect" parent="Layout/MarginContainer/Layout/PortraitContainer/MarginContainer"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 130.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 128, 128 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="Layout/MarginContainer/Layout"]
+margin_left = 152.0
+margin_right = 710.0
+margin_bottom = 145.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 15
+
+[node name="Actor" type="Label" parent="Layout/MarginContainer/Layout/Layout"]
+margin_bottom = 19.0
+rect_min_size = Vector2( 0, 12 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="RichTextLabel" parent="Layout/MarginContainer/Layout/Layout"]
+margin_top = 34.0
+margin_right = 558.0
+margin_bottom = 60.0
+size_flags_vertical = 0
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_constants/line_separation = 7
+custom_fonts/bold_font = SubResource( 6 )
+custom_fonts/normal_font = SubResource( 7 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+
+[node name="Options" type="VBoxContainer" parent="Layout/MarginContainer/Layout/Layout"]
+margin_left = 279.0
+margin_top = 75.0
+margin_right = 279.0
+margin_bottom = 75.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Indictor" type="TextureRect" parent="Layout"]
+anchor_left = 0.5
+anchor_top = 0.9
+anchor_right = 0.5
+anchor_bottom = 0.9
+margin_left = -5.5
+margin_top = -9.0
+margin_right = 5.5
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.01
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/completed = SubResource( 4 )
+anims/show_indictor = SubResource( 5 )
+
+[node name="Logic" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="show_branch" from="Logic" to="." method="_on_Logic_show_branch"]
+[connection signal="show_sentence" from="Logic" to="." method="_on_Logic_show_sentence"]

@@ -38,7 +38,8 @@ var state = {
 		"id": "fire_ball",
 		"name": "火球术"
 	}],
-	"elements": []
+	"elements": [],
+	"hp": 5
 }
 
 func _ready():
@@ -100,6 +101,7 @@ func _on_SysthesisContainer_generate_finished(skill):
 	if skill == null:
 		return
 	if ArrayUtils.find(self.state.skills, skill) != null:
+		self._on_SysthesisBack_pressed()
 		return
 	self.state.skills.push_back(skill)
 	
