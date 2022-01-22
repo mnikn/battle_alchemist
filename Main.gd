@@ -70,7 +70,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
-		"content": "最好的方式是让它粉身碎骨,把它骨灰都扬了!"
+		"content": "最好的方式是让它粉身碎骨,把它骨灰都扬了!或者也可以用更加猛烈的火焰烧到只剩下骨灰."
 	}]), "completed")
 	var skeleton_win = yield(skeleton_battle, "battle_finished")
 	if !skeleton_win:

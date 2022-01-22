@@ -16,6 +16,14 @@ static func find(arr: Array, prop: Dictionary):
 	if len(res) == 0:
 		return null
 	return res[0]
+	
+static func concat(arr1: Array, arr2: Array):
+	var res = []
+	for item in arr1:
+		res.push_back(item)
+	for item in arr2:
+		res.push_back(item)
+	return res
 
 static func join(arr: PoolStringArray, code: String):
 	var res = ""

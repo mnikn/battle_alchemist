@@ -9,6 +9,14 @@ const SKILLS = {
 		"normal_damage": 2,
 		"critical_damage": 5
 	},
+	"big_fire_ball": {
+		"id": "big_fire_ball",
+		"type": "attack",
+		"name": "豪火球术",
+		"weak_damage": 3,
+		"normal_damage": 5,
+		"critical_damage": 10
+	},
 	"water_ball": {
 		"id": "water_ball",
 		"type": "attack",
@@ -53,6 +61,11 @@ const ELEMENTS = {
 		"type": "mental",
 		"id": "crash",
 		"name": "崩溃"
+	},
+	"firm": {
+		"type": "mental",
+		"id": "firm",
+		"name": "猛烈"
 	}
 }
 

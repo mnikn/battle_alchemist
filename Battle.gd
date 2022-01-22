@@ -20,7 +20,7 @@ const ENEMY_DEFEATED = "{enemy}倒下了,你打败了{enemy}!"
 
 var state = {
 	"skills": [],
-	"elements": [],
+	"elements": [Constants.ELEMENTS.fire, Constants.ELEMENTS.firm],
 	"hp": {
 		"max_hp": 20,
 		"current_hp": 20
@@ -53,7 +53,7 @@ func _on_UseSkill_pressed():
 		
 
 func _on_GenerateSkill_pressed():
-	$Systhesis/SysthesisContainer.elements = self.state.elements
+	$Systhesis/SysthesisContainer.elements = ArrayUtils.concat(self.state.elements, self.state.skills)
 	$Systhesis/SysthesisContainer.visible = true
 	$Mask.visible = true
 
@@ -98,16 +98,15 @@ func use_skill(skill):
 	self.next_term()
 
 func _on_SysthesisContainer_generate_finished(skill):
+	self._on_SysthesisBack_pressed()
 	if skill == null:
 		self.next_term()
 		return
 	if ArrayUtils.find(self.state.skills, skill) != null:
-		self._on_SysthesisBack_pressed()
 		self.next_term()
 		return
 	self.state.skills.push_back(skill)
 	
-	self._on_SysthesisBack_pressed()
 	self.next_term()
 	
 func show_action_panel():
@@ -131,5 +130,7 @@ func next_term():
 		yield(self.show_dialogue(LOSE_DIALOGUE), "completed")
 		self.emit_signal("battle_finished", false)
 		return
+	if self.enmey.id == "king":
+		pass
 	self.show_action_panel()
 	
