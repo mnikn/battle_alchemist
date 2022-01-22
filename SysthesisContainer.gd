@@ -9,7 +9,8 @@ const GENERATE_FAIL_DIALOGUE = "合成失败!"
 onready var Input1 = $Output/MarginContainer/VBoxContainer/HBoxContainer/Input1
 onready var Input2 = $Output/MarginContainer/VBoxContainer/HBoxContainer/Input2
 var DialogueScene = preload("res://components/dialogue/Dialogue.tscn")
-var ElementCardScene = preload("res://Card.tscn")
+var PhysicCardScene = preload("res://Card.tscn")
+var MentalCardScene = preload("res://MentalCard.tscn")
 
 func _ready():
 	$Output/MarginContainer/VBoxContainer/HBoxContainer/Generate.disabled = true
@@ -68,7 +69,7 @@ func _on_SysthesisContainer_visibility_changed():
 	if self.visible:
 		NodeUtils.clear_children($BottomPanel/MarginContainer/GridContainer)
 		for item in self.elements:
-			var node = self.ElementCardScene.instance()
+			var node = self.PhysicCardScene.instance() if item.type != "mental" else self.MentalCardScene.instance()
 			node.data = item
 			$BottomPanel/MarginContainer/GridContainer.add_child(node)
 	else:

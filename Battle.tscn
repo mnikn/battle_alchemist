@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Battle.gd" type="Script" id=1]
 [ext_resource path="res://SysthesisContainer.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/gui/battle/action_button_normal.png" type="Texture" id=10]
 [ext_resource path="res://assets/gui/battle/skill_panel_back_btn.png" type="Texture" id=11]
 [ext_resource path="res://assets/gui/battle/skill_panel_back_btn_active.png" type="Texture" id=12]
+[ext_resource path="res://assets/gui/battle/dialogue.png" type="Texture" id=13]
+[ext_resource path="res://assets/jin.png" type="Texture" id=14]
+[ext_resource path="res://assets/gui/battle/portrait_container.png" type="Texture" id=15]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
@@ -32,9 +35,16 @@ region_rect = Rect2( 0, 0, 373, 58 )
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 373, 58 )
 
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 13 )
+
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 160, 50 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 34, 34 )
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 1 )
@@ -108,6 +118,7 @@ margin_bottom = 136.0
 custom_constants/separation = 6
 
 [node name="SummaryPanel" type="PanelContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer"]
+visible = false
 margin_right = 480.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 480, 0 )
@@ -211,8 +222,9 @@ __meta__ = {
 }
 
 [node name="SkillPanel" type="PanelContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer"]
+visible = false
 margin_left = 486.0
-margin_right = 1232.0
+margin_right = 856.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 6 )
@@ -221,7 +233,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer/SkillPanel"]
-margin_right = 746.0
+margin_right = 370.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -233,7 +245,7 @@ custom_constants/margin_bottom = 12
 [node name="GridContainer" type="GridContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer/SkillPanel/MarginContainer"]
 margin_left = 52.0
 margin_top = 12.0
-margin_right = 734.0
+margin_right = 358.0
 margin_bottom = 100.0
 custom_constants/vseparation = 12
 custom_constants/hseparation = 32
@@ -254,17 +266,14 @@ texture_focused = ExtResource( 12 )
 expand = true
 
 [node name="Dialogue" type="PanelContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer"]
-visible = false
-margin_left = 486.0
-margin_right = 1256.0
-margin_bottom = 136.0
+margin_right = 1232.0
+margin_bottom = 112.0
 size_flags_horizontal = 3
+custom_styles/panel = SubResource( 7 )
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/BottomPanel/MarginContainer/HBoxContainer/Dialogue"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 763.0
-margin_bottom = 129.0
+margin_right = 1232.0
+margin_bottom = 112.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -273,8 +282,9 @@ custom_constants/margin_bottom = 20
 [node name="Content" type="RichTextLabel" parent="UI/BottomPanel/MarginContainer/HBoxContainer/Dialogue/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 736.0
-margin_bottom = 102.0
+margin_right = 1212.0
+margin_bottom = 92.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
 bbcode_enabled = true
 
 [node name="PanelContainer" type="PanelContainer" parent="UI"]
@@ -289,7 +299,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/PanelContainer"]
 margin_right = 320.0
-margin_bottom = 100.0
+margin_bottom = 102.0
 custom_constants/margin_right = 24
 custom_constants/margin_top = 24
 custom_constants/margin_left = 24
@@ -303,19 +313,53 @@ __meta__ = {
 margin_left = 24.0
 margin_top = 24.0
 margin_right = 296.0
-margin_bottom = 84.0
+margin_bottom = 86.0
 
-[node name="Label" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 272.0
-margin_bottom = 17.0
+margin_bottom = 34.0
+custom_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="UI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 34.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 34, 34 )
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -16.0
+margin_top = -16.0
+margin_right = 16.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 32, 32 )
+texture = ExtResource( 14 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 46.0
+margin_top = 8.0
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "金"
+valign = 1
 
 [node name="Hp" parent="UI/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_left = 0.0
-margin_top = 36.0
+margin_top = 38.0
 margin_right = 272.0
-margin_bottom = 60.0
+margin_bottom = 62.0
 size_flags_horizontal = 3
 size_flags_vertical = 10
 
