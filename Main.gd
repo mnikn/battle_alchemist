@@ -28,11 +28,13 @@ func _ready():
 		"type": "sentence",
 		"content": "来到魔王的城堡后,一只史莱姆挡在你的面前!"
 	}]), "completed")
-	var slime_battle = self.create_battle(Constants.CREATURES.slime, 
+	var slime_battle = self.create_battle(Constants.CREATURES.slime,
 	[
 		Constants.ELEMENTS.fire, 
-		Constants.ELEMENTS.water, 
-		Constants.ELEMENTS.concentrated
+		Constants.ELEMENTS.water,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.warm
 	])
 	yield(self.show_dialogue([{
 		"type": "sentence",
@@ -60,7 +62,12 @@ func _ready():
 		Constants.ELEMENTS.fire, 
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
+		Constants.ELEMENTS.warm,
 		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.crash,
 		Constants.ELEMENTS.crash
 	])
 	yield(self.show_dialogue([{
@@ -90,6 +97,9 @@ func _ready():
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
 		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.warm,
+		Constants.ELEMENTS.firm,
+		Constants.ELEMENTS.wrath,
 		Constants.ELEMENTS.crash
 	])
 	yield(self.show_dialogue([{
@@ -120,6 +130,7 @@ func _ready():
 		Constants.ELEMENTS.water,
 		Constants.ELEMENTS.mud,
 		Constants.ELEMENTS.concentrated,
+		Constants.ELEMENTS.firm,
 		Constants.ELEMENTS.crash
 	])
 	var balrog_win = yield(balrog_battle, "battle_finished")
@@ -190,7 +201,7 @@ func show_game_over():
 	
 func create_battle(enemy, elements):
 	var battle = self.BattleScene.instance()
-	battle.enmey = enemy
+	battle.enemy = enemy
 	battle.state.elements = elements
 	battle.connect("battle_finished", self, "on_battle_finished", [battle])
 	self.add_child(battle)

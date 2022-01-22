@@ -11,22 +11,24 @@ onready var DialogueContent = $UI/BottomPanel/MarginContainer/HBoxContainer/Dial
 
 onready var SkillItemScene = preload("res://SkillItem.tscn")
 
-export (Dictionary) var enmey
+export (Dictionary) var enemy
 
 const DAMAGE_DIALOGUE = "{enemy}向你发起攻击,你受到 {damage} 点伤害!"
 const LOSE_DIALOGUE = "你倒下了!"
 const ENEMY_DAMAGE_DIALOGUE = "你发动技能{skill},对{enemy}造成 {damage} 点伤害!"
 const ENEMY_DEFEATED = "{enemy}倒下了,你打败了{enemy}!"
+const HEAL = "你发动技能{skill},恢复了 {value} 点 hp!"
+const DEFENSE = "你发动技能{skill},接下来受到的伤害会减少 {value}!"
 
 var state = {
 	"skills": [],
-	"elements": [Constants.ELEMENTS.fire, Constants.ELEMENTS.firm],
+	"elements": [],
 	"hp": {
 		"max_hp": 20,
 		"current_hp": 20
-	}
+	},
+	"buffer_skills": {}
 }
-
 
 func _ready():
 	$Systhesis/SysthesisContainer.visible = false
@@ -78,33 +80,69 @@ func show_dialogue(content: String):
 func use_skill(skill):
 	if skill.type == "attack":
 		var damage = skill.normal_damage
-		if skill.id in self.enmey.weak:
+		if skill.id in self.enemy.weak:
 			damage = skill.critical_damage
-		elif skill.id in self.enmey.strong:
+		elif skill.id in self.enemy.strong:
 			damage = skill.weak_damage
-		self.enmey.hp.current_hp -= damage
+		self.enemy.hp.current_hp -= damage
 		yield(self.show_dialogue(ENEMY_DAMAGE_DIALOGUE.format({
-			"enemy": self.enmey.name,
+			"enemy": self.enemy.name,
 			"skill": skill.name,
 			"damage": damage
 		})), "completed")
-		if self.enmey.hp.current_hp <= 0:
+		if self.enemy.hp.current_hp <= 0:
 			yield(self.show_dialogue(ENEMY_DEFEATED.format({
-				"enemy": self.enmey.name
+				"enemy": self.enemy.name
 			})), "completed")
 			self.emit_signal("battle_finished", true)
 			return
-		
+	elif skill.type == "heal":
+		var origin_hp = self.state.hp.current_hp
+		self.state.hp.current_hp = min(self.state.hp.current_hp + skill.heal, self.state.hp.max_hp)
+		var hp_change = self.state.hp.current_hp - origin_hp
+		$UI/PanelContainer/MarginContainer/VBoxContainer/Hp.init(self.state.hp)
+		yield(self.show_dialogue(HEAL.format({
+			"skill": skill.name,
+			"value": hp_change
+		})), "completed")
+	elif skill.type == "buffer":
+		self.state.buffer_skills[skill.id] = skill
+		var BufferList = $UI/BottomPanel/MarginContainer/HBoxContainer/SummaryPanel/MarginContainer/VBoxContainer/VBoxContainer
+		NodeUtils.clear_children(BufferList)
+		for item in self.state.buffer_skills.values():
+			var node = Label.new()
+			node.text = "{skill}:受到的伤害减少 {value}".format({
+				"skill": skill.name,
+				"value": skill.defense
+			})
+			BufferList.add_child(node)
+		yield(self.show_dialogue(DEFENSE.format({
+			"skill": skill.name,
+			"value": skill.defense
+		})), "completed")
 	self.next_term()
 
-func _on_SysthesisContainer_generate_finished(skill):
+func _on_SysthesisContainer_generate_finished(skill, physic, mental):
 	self._on_SysthesisBack_pressed()
 	if skill == null:
 		self.next_term()
 		return
-	if ArrayUtils.find(self.state.skills, skill) != null:
+	if ArrayUtils.find(self.state.skills, { "id": skill.id}) != null:
 		self.next_term()
 		return
+
+	var skill_res = []
+	for item in self.state.skills:
+		if item.id != physic.id:
+			skill_res.push_back(item)
+	self.state.skills = skill_res
+	
+	var element_res = []
+	for item in self.state.elements:
+		if item.id != physic.id and item.id != mental.id:
+			element_res.push_back(item)
+	self.state.elements = element_res
+	
 	self.state.skills.push_back(skill)
 	
 	self.next_term()
@@ -116,12 +154,16 @@ func show_action_panel():
 	self.SummaryPanel.visible = true
 	
 func next_term():
-	var damage = round(RandomUtils.dice_range(self.enmey.attack))
+	var damage = round(RandomUtils.dice_range(self.enemy.attack))
+	var defense = 0
+	for item in self.state.buffer_skills.values():
+		defense += item.defense
+	damage = max(damage - defense, 0)
 	var origin_hp = self.state.hp.current_hp
 	self.state.hp.current_hp = max(self.state.hp.current_hp - damage, 0)
 	
 	yield(self.show_dialogue(DAMAGE_DIALOGUE.format({
-		"enemy": self.enmey.name,
+		"enemy": self.enemy.name,
 		"damage": abs(damage)
 	})), "completed")
 	$UI/PanelContainer/MarginContainer/VBoxContainer/Hp.init(self.state.hp)
@@ -130,7 +172,7 @@ func next_term():
 		yield(self.show_dialogue(LOSE_DIALOGUE), "completed")
 		self.emit_signal("battle_finished", false)
 		return
-	if self.enmey.id == "king":
+	if self.enemy.id == "king":
 		pass
 	self.show_action_panel()
 	

@@ -24,12 +24,14 @@ func add_snap_node(node: Draggable):
 	if self.snap_nodes.find(node) == -1:
 		self.snap_nodes.append(node)
 	node.snaping_node = self.get_parent()
-	self.emit_signal("on_snap_node", node.get_parent())
 	node.snap_to_position(self.get_parent().rect_global_position)
 	if self.snap_node_exclude:
-		for snap_node in self.snap_nodes:
+		var res = ArrayUtils.concat(self.snap_nodes, [])
+		for snap_node in res:
 			if snap_node != node:
 				snap_node.snap_to_position(snap_node.initial_pos)
+				self.snap_nodes.remove(self.snap_nodes.find(snap_node))
+	self.emit_signal("on_snap_node", node.get_parent())	
 	return true
 
 func can_drop(node):

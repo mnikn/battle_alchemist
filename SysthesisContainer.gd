@@ -34,10 +34,9 @@ func _on_Generate_pressed():
 	var input2_data = self.Input2.get_node("DragDropTarget").snap_nodes[0] if len(self.Input2.get_node("DragDropTarget").snap_nodes) > 0 else null
 	if input2_data != null:
 		input2_data = input2_data.parent.data
-	for script in Constants.GENERATE_SKILL_TABLE.keys():
-		var script_elements = Constants.GENERATE_SKILL_TABLE[script]
-		if input1_data.id == script_elements[0] and input2_data.id == script_elements[1]:
-			skill = Constants.SKILLS[script]
+	for script in Constants.GENERATE_SKILL_TABLE:
+		if input1_data.id == script[0] and input2_data.id == script[1]:
+			skill = Constants.SKILLS[script[2]]
 		
 	$Mask.visible = true
 	var node = self.DialogueScene.instance()
@@ -57,7 +56,7 @@ func _on_Generate_pressed():
 		}]), "completed")
 	$Mask.visible = false
 	
-	self.emit_signal("generate_finished", skill)
+	self.emit_signal("generate_finished", skill, input1_data, input2_data)
 	
 	self.Input1.get_node("DragDropTarget").remove_all_snap()
 	self.Input2.get_node("DragDropTarget").remove_all_snap()

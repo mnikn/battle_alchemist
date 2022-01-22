@@ -9,6 +9,28 @@ const SKILLS = {
 		"normal_damage": 2,
 		"critical_damage": 5
 	},
+	"fire_missile": {
+		"id": "fire_ball",
+		"type": "attack",
+		"name": "火弹术",
+		"weak_damage": 1,
+		"normal_damage": 2,
+		"critical_damage": 5
+	},
+	"fire_shield": {
+		"id": "fire_shield",
+		"type": "buffer",
+		"name": "火盾",
+		"defense": 2,
+	},
+	"fire_whip": {
+		"id": "fire_whip",
+		"type": "attack",
+		"name": "火鞭",
+		"weak_damage": 1,
+		"normal_damage": 2,
+		"critical_damage": 5
+	},
 	"big_fire_ball": {
 		"id": "big_fire_ball",
 		"type": "attack",
@@ -17,6 +39,15 @@ const SKILLS = {
 		"normal_damage": 5,
 		"critical_damage": 10
 	},
+	"fire_rain": {
+		"id": "fire_ball",
+		"type": "attack",
+		"name": "火雨",
+		"weak_damage": 5,
+		"normal_damage": 10,
+		"critical_damage": 20
+	},
+	
 	"water_ball": {
 		"id": "water_ball",
 		"type": "attack",
@@ -25,10 +56,31 @@ const SKILLS = {
 		"normal_damage": 2,
 		"critical_damage": 5
 	},
+	"big_rain": {
+		"id": "big_fire_ball",
+		"type": "attack",
+		"name": "暴雨术",
+		"weak_damage": 3,
+		"normal_damage": 5,
+		"critical_damage": 10
+	},
+	"heal": {
+		"id": "heal",
+		"type": "heal",
+		"name": "治愈术",
+		"heal": 5
+	},
+	"big_heal": {
+		"id": "big_heal",
+		"type": "heal",
+		"name": "痊愈术",
+		"heal": 20
+	},
+	
 	"stone_crash": {
 		"id": "stone_crash",
 		"type": "attack",
-		"name": "落石术",
+		"name": "地震术",
 		"weak_damage": 1,
 		"normal_damage": 2,
 		"critical_damage": 5
@@ -52,10 +104,11 @@ const ELEMENTS = {
 		"id": "mud",
 		"name": "土"
 	},
+	
 	"concentrated": {
 		"type": "mental",
 		"id": "concentrated",
-		"name": "集中"
+		"name": "专注"
 	},
 	"crash": {
 		"type": "mental",
@@ -66,19 +119,39 @@ const ELEMENTS = {
 		"type": "mental",
 		"id": "firm",
 		"name": "猛烈"
+	},
+	"warm": {
+		"type": "mental",
+		"id": "warm",
+		"name": "温暖"
+	},
+	"wrath": {
+		"type": "mental",
+		"id": "wrath",
+		"name": "愤怒"
 	}
 }
 
-const GENERATE_SKILL_TABLE = {
-	"fire_ball": ["fire", "concentrated"],
-	"stone_crash": ["mud", "crash"],
-	"big_fire_ball": ["fire_ball", "firm"],
-	"water_ball": ["water", "concentrated"],
-	"big_rain": ["water_ball", "firm"],
-	"petrification": ["mud", "cool"],
-	"frezz": ["ice", "cool"],
-	"last_light": ["human", "courage"]
-}
+const GENERATE_SKILL_TABLE = [
+	["fire", "concentrated", "fire_ball"],
+	["fire", "firm", "fire_missile"],
+	["fire", "warm", "fire_shield"],
+	["fire", "wrath", "fire_whip"],
+	["fire_ball", "firm", "big_fire_ball"],
+	["big_fire_ball", "firm", "fire_rain"],
+	
+	["water", "warm", "heal"],
+	["heal", "concentrated", "big_heal"],
+	["water", "concentrated", "water_ball"],
+	["water", "firm", "water_ball"],
+	["water", "firm", "big_rain"],
+	["water_ball", "firm", "big_rain"],
+	
+	["mud", "crash", "stone_crash"],
+	
+	["mud", "cool", "petrification"],
+	["ice", "cool", "frezz"]
+]
 
 const CREATURES = {
 	"slime": {
@@ -88,8 +161,8 @@ const CREATURES = {
 			"max_hp": 3,
 			"current_hp": 3
 		},
-		"weak": ["fire_ball"],
-		"strong": ["water_ball"],
+		"weak": ["fire_ball", "fire_missile", "big_fire_ball", "fire_rain"],
+		"strong": ["water_ball", "big_rain"],
 		"attack": [1,1]
 	},
 	"skleton": {
@@ -121,8 +194,8 @@ const CREATURES = {
 			"max_hp": 50,
 			"current_hp": 50
 		},
-		"weak": [],
-		"strong": [],
+		"weak": ["water_ball", "big_rain"],
+		"strong": ["fire_ball", "big_fire_ball"],
 		"attack": [4,7]
 	},
 	"king": {
