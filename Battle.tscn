@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Battle.gd" type="Script" id=1]
 [ext_resource path="res://SysthesisContainer.tscn" type="PackedScene" id=2]
@@ -18,7 +18,6 @@
 [ext_resource path="res://assets/gui/battle/bg.png" type="Texture" id=16]
 [ext_resource path="res://assets/gui/battle/canvas_stand_point.png" type="Texture" id=17]
 [ext_resource path="res://assets/creatures/jin.png" type="Texture" id=18]
-[ext_resource path="res://assets/creatures/slime.png" type="Texture" id=19]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
@@ -97,7 +96,6 @@ margin_left = 151.0
 margin_top = -94.0
 margin_right = 311.0
 margin_bottom = 92.0
-texture = ExtResource( 19 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

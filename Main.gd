@@ -81,6 +81,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "最好的方式是让它粉身碎骨,把它骨灰都扬了!或者也可以用更加猛烈的火焰烧到只剩下骨灰."
 	}]), "completed")
 	var skeleton_win = yield(skeleton_battle, "battle_finished")
@@ -109,6 +110,7 @@ func _ready():
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "我觉得你应该都熟悉该怎么战斗了吧,那接下来我就不用再假装自然自语给你提示了!"
 	}]), "completed")
 	var troll_win = yield(troll_battle, "battle_finished")
@@ -118,6 +120,7 @@ func _ready():
 	
 	yield(self.show_dialogue([{
 		"type": "sentence",
+		"portrait": "res://assets/jin.png",
 		"content": "你已经很接近魔王的位置了.当你走到魔王的门前,炎魔出现在你面前."
 	}, {
 		"type": "sentence",
@@ -126,6 +129,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "我还以为除了魔王的怪物都不会说话呢!既然你求我打败你,那我就勉为其难和你打一场吧."
 	}]), "completed")
 	var balrog_battle = self.create_battle(Constants.CREATURES.balrog, 
@@ -152,6 +156,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "停止时间吗,这还是挺棘手的,有什么方法能够解决吗."
 	}]), "completed")
 	
@@ -165,6 +170,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "废话少说,看我过来把你痛揍一顿!"
 	}, {
 		"type": "sentence",
@@ -173,6 +179,7 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "金",
+		"portrait": "res://assets/jin.png",
 		"content": "不走进点的话,怎么痛揍你一顿啊!"
 	}, {
 		"type": "sentence",

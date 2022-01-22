@@ -39,6 +39,8 @@ func _ready():
 	self.Dialogue.visible = false
 	
 	$UI/PanelContainer/MarginContainer/VBoxContainer/Hp.init(self.state.hp)
+	
+	$Canvas/Enemy/Portrait.texture = load(self.enemy.portrait)
 
 func _on_UseSkill_pressed():
 	self.Dialogue.visible = false
