@@ -305,6 +305,6 @@ const CREATURES = {
 		"attack": [5,8],
 		"weak": [],
 		"strong": [],
-		"portrait": "res://assets/creatures/slime.png"
+		"portrait": "res://assets/creatures/king.png"
 	}
 }
