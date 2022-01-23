@@ -9,7 +9,7 @@ func _ready():
 	$CanvasLayer/Bg.visible = true
 	
 	$CanvasLayer/Bg.visible = false
-	var test_battle = self.create_battle(Constants.CREATURES.troll, 
+	var test_battle = self.create_battle(Constants.CREATURES.balrog, 
 	[
 		Constants.ELEMENTS.fire,
 		Constants.ELEMENTS.fire,

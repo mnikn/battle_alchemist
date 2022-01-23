@@ -293,7 +293,7 @@ const CREATURES = {
 		"weak": ["water_ball", "big_rain", "big_water_ball", "water_drop", "water_flood"],
 		"strong": ["fire_ball", "big_fire_ball", "fire_rain", "fire_cloud", "fire_rain", "fire_wrath_spash"],
 		"attack": [4,7],
-		"portrait": "res://assets/creatures/slime.png"
+		"portrait": "res://assets/creatures/fireman.png"
 	},
 	"king": {
 		"id": "king",
