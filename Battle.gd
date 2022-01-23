@@ -42,6 +42,11 @@ func _ready():
 	$UI/PanelContainer/MarginContainer/VBoxContainer/Hp.init(self.state.hp)
 	
 	$Canvas/Enemy/Portrait.texture = load(self.enemy.portrait)
+	
+	if self.enemy.id != "king":
+		$NormalPlayer.play()
+	else:
+		$BossPlayer.play()
 
 func _on_UseSkill_pressed():
 	self.Dialogue.visible = false

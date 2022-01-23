@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Battle.gd" type="Script" id=1]
 [ext_resource path="res://SysthesisContainer.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://assets/gui/battle/canvas_stand_point.png" type="Texture" id=17]
 [ext_resource path="res://assets/creatures/jin.png" type="Texture" id=18]
 [ext_resource path="res://assets/gui/battle/action_button_disabled.png" type="Texture" id=19]
+[ext_resource path="res://assets/music/normal.mp3" type="AudioStream" id=20]
+[ext_resource path="res://assets/music/boss.mp3" type="AudioStream" id=21]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 3 )
@@ -407,6 +409,12 @@ color = Color( 0.509804, 0.509804, 0.509804, 1 )
 
 [node name="SysthesisContainer" parent="Systhesis" instance=ExtResource( 2 )]
 visible = false
+
+[node name="NormalPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 20 )
+
+[node name="BossPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 21 )
 
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/UseSkill" to="." method="_on_UseSkill_pressed"]
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/GenerateSkill" to="." method="_on_GenerateSkill_pressed"]
