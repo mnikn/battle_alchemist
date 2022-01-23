@@ -5,27 +5,8 @@ var GameOverScene = preload("./game_over/GameOver.tscn")
 var DialogueScene = preload("res://components/dialogue/Dialogue.tscn")
 
 func _ready():
-	$Mask.visible = false	
-#	var test_battle = self.create_battle(Constants.CREATURES.troll, 
-#	[
-#		Constants.ELEMENTS.fire,
-#		Constants.ELEMENTS.fire,
-#		Constants.ELEMENTS.water,
-#		Constants.ELEMENTS.water,
-#		Constants.ELEMENTS.mud,
-#		Constants.ELEMENTS.mud,
-#		Constants.ELEMENTS.concentrated,
-#		Constants.ELEMENTS.concentrated,
-#		Constants.ELEMENTS.warm,
-#		Constants.ELEMENTS.warm,
-#		Constants.ELEMENTS.firm,
-#		Constants.ELEMENTS.firm,
-#		Constants.ELEMENTS.wrath,
-#		Constants.ELEMENTS.wrath,
-#		Constants.ELEMENTS.crash,
-#		Constants.ELEMENTS.crash
-#	])
-#	yield(test_battle, "battle_finished")
+	$Mask.visible = false
+	$CanvasLayer/Bg.visible = true
 	
 	yield(self.show_dialogue([{
 		"type": "sentence",
@@ -50,6 +31,7 @@ func _ready():
 		"type": "sentence",
 		"content": "来到魔王的城堡后,一只史莱姆挡在你的面前!"
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
 	var slime_battle = self.create_battle(Constants.CREATURES.slime,
 	[
 		Constants.ELEMENTS.fire, 
@@ -71,6 +53,7 @@ func _ready():
 		self.show_game_over()
 		return
 	
+	$CanvasLayer/Bg.visible = true
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"content": "打败史莱姆后,你继续前进."
@@ -78,6 +61,7 @@ func _ready():
 		"type": "sentence",
 		"content": "刚走了没多久,一只骷髅从暗处向你袭击!"
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
 	var skeleton_battle = self.create_battle(Constants.CREATURES.skleton, 
 	[
 		Constants.ELEMENTS.fire, 
@@ -104,6 +88,7 @@ func _ready():
 		self.show_game_over()
 		return
 	
+	$CanvasLayer/Bg.visible = true
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"content": "打败怪物后你继续前进."
@@ -111,6 +96,7 @@ func _ready():
 		"type": "sentence",
 		"content": "突然一个巨大的身影出现在你面前---是巨魔.它向你张牙舞爪扑过来!"
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
 	var troll_battle = self.create_battle(Constants.CREATURES.troll, 
 	[
 		Constants.ELEMENTS.fire,
@@ -140,6 +126,7 @@ func _ready():
 	if !troll_win:
 		self.show_game_over()
 		return
+	$CanvasLayer/Bg.visible = true
 	
 	yield(self.show_dialogue([{
 		"type": "sentence",
@@ -154,6 +141,7 @@ func _ready():
 		"portrait": "res://assets/jin.png",
 		"content": "我还以为除了魔王的怪物都不会说话呢!既然你求我打败你,那我就勉为其难和你打一场吧."
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
 	var balrog_battle = self.create_battle(Constants.CREATURES.balrog, 
 	[
 		Constants.ELEMENTS.fire,
@@ -177,6 +165,7 @@ func _ready():
 	if !balrog_win:
 		self.show_game_over()
 		return
+	$CanvasLayer/Bg.visible = true
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"actor": "炎魔",
@@ -212,15 +201,16 @@ func _ready():
 		"type": "sentence",
 		"actor": "金",
 		"portrait": "res://assets/jin.png",
-		"content": "不走进点的话,怎么痛揍你一顿啊!"
+		"content": "不走������近点的话,怎么痛揍你一顿啊!"
 	}, {
 		"type": "sentence",
 		"actor": "魔王",
-		"content": "霍霍,那你就再走进点好了."
+		"content": "霍霍,那你就再走近点好了."
 	}, {
 		"type": "sentence",
 		"content": "你和魔王互相走向对方,你们之前发出两股强大的气流相互碰撞,战斗开始!"
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
 	var king_battle = self.create_battle(Constants.CREATURES.king, 
 	[
 		Constants.ELEMENTS.fire,
@@ -244,7 +234,8 @@ func _ready():
 	if !king_win:
 		self.show_game_over()
 		return
-		
+	
+	$CanvasLayer/Bg.visible = true
 	yield(self.show_dialogue([{
 		"type": "sentence",
 		"actor": "魔王",
