@@ -281,7 +281,7 @@ const CREATURES = {
 		"weak": ["fire_ball", "big_fire_ball", "fire_rain", "fire_cloud", "fire_wrath_spash"],
 		"strong": [],
 		"attack": [3,6],
-		"portrait": "res://assets/creatures/slime.png"
+		"portrait": "res://assets/creatures/troll.png"
 	},
 	"balrog": {
 		"id": "balrog",
