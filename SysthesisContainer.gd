@@ -3,7 +3,7 @@ signal generate_finished(skill)
 
 export (PoolStringArray) var elements = []
 
-const GENERATE_SUCCESS_DIALOGUE = "你生成了技能{skill}!"
+const GENERATE_SUCCESS_DIALOGUE = "你组合生成了技能{skill}!"
 const GENERATE_FAIL_DIALOGUE = "合成失败!"
 
 onready var Input1 = $Output/MarginContainer/VBoxContainer/HBoxContainer/Input1

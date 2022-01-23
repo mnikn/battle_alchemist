@@ -237,7 +237,7 @@ const GENERATE_SKILL_TABLE = [
 	["stone_spike", "crash", "stone_crash"],
 	["stone_spike", "wrath", "stone_erathquake"],
 	["mud", "warm", "stone_shield"],
-	["stone_shield", "firm", "big_stone_shield"],
+	["stone_shield", "concentrated", "big_stone_shield"],
 	["mud", "wrath", "stone_spike"],
 	["mud", "firm", "stone_spike"],
 	["mud", "crash", "stone_crash"],
