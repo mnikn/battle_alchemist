@@ -416,6 +416,9 @@ stream = ExtResource( 20 )
 [node name="BossPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 21 )
 
+[node name="EffectPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
+
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/UseSkill" to="." method="_on_UseSkill_pressed"]
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/ActionPanel/MarginContainer/VBoxContainer/GenerateSkill" to="." method="_on_GenerateSkill_pressed"]
 [connection signal="pressed" from="UI/BottomPanel/MarginContainer/HBoxContainer/SkillPanel/Back" to="." method="_on_SkillPanelBack_pressed"]

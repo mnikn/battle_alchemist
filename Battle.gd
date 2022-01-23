@@ -66,10 +66,15 @@ func _on_GenerateSkill_pressed():
 	$Systhesis/SysthesisContainer.elements = ArrayUtils.concat(self.state.elements, self.state.skills)
 	$Systhesis/SysthesisContainer.visible = true
 	$Mask.visible = true
+	
+	$EffectPlayer.stream = load("res://assets/music/effects/click.mp3")
+	$EffectPlayer.play()
 
 func _on_SysthesisBack_pressed():
 	$Systhesis/SysthesisContainer.visible = false
 	$Mask.visible = false
+	$EffectPlayer.stream = load("res://assets/music/effects/click.mp3")
+	$EffectPlayer.play()
 
 func _on_SkillPanelBack_pressed():
 	self.show_action_panel()
@@ -96,6 +101,8 @@ func use_skill(skill):
 			if item.has("attack"):
 				damage += item.attack
 		self.enemy.hp.current_hp -= damage
+		$EffectPlayer.stream = load("res://assets/music/effects/hit.mp3")
+		$EffectPlayer.play()
 		yield(self.show_dialogue(ENEMY_DAMAGE_DIALOGUE.format({
 			"enemy": self.enemy.name,
 			"skill": skill.name,
@@ -191,6 +198,8 @@ func next_term():
 	var origin_hp = self.state.hp.current_hp
 	self.state.hp.current_hp = max(self.state.hp.current_hp - damage, 0)
 	
+	$EffectPlayer.stream = load("res://assets/music/effects/hit.mp3")
+	$EffectPlayer.play()
 	yield(self.show_dialogue(DAMAGE_DIALOGUE.format({
 		"enemy": self.enemy.name,
 		"damage": abs(damage)
