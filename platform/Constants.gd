@@ -302,7 +302,7 @@ const CREATURES = {
 			"max_hp": 100,
 			"current_hp": 100
 		},
-		"attack": [6,10],
+		"attack": [5,8],
 		"weak": [],
 		"strong": [],
 		"portrait": "res://assets/creatures/slime.png"
