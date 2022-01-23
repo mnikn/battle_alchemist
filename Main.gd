@@ -184,12 +184,12 @@ func _ready():
 	}, {
 		"type": "sentence",
 		"actor": "炎魔",
-		"content": "魔王甚至可以停止时间!"
+		"content": "魔王是没有任何弱点的!"
 	}, {
 		"type": "sentence",
 		"actor": "金",
 		"portrait": "res://assets/jin.png",
-		"content": "停止时间吗,这还是挺棘手的,有什么方法能够解决吗."
+		"content": "没有弱点吗,这还是挺棘手的,只能打消耗战吗."
 	}]), "completed")
 	
 	yield(self.show_dialogue([{
@@ -244,6 +244,27 @@ func _ready():
 	if !king_win:
 		self.show_game_over()
 		return
+		
+	yield(self.show_dialogue([{
+		"type": "sentence",
+		"actor": "魔王",
+		"content": "不可能!我竟然会输!"
+	}, {
+		"type": "sentence",
+		"actor": "魔王",
+		"content": "不过我还没失败,只要能去那个地方,消灭你是轻而易举的事..."
+	}, {
+		"type": "sentence",
+		"actor": "金",
+		"portrait": "res://assets/jin.png",
+		"content": "48小时爆肝游戏只能做到这里了,你还想二阶段变身?"
+	}, {
+		"type": "sentence",
+		"content": "你给了魔王最后一击,魔王被打倒了."
+	}, {
+		"type": "sentence",
+		"content": "从此世界恢复和平,可喜可贺."
+	}]), "completed")
 	
 func on_battle_finished(win, node: Node):
 	node.queue_free()
