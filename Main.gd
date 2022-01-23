@@ -278,6 +278,10 @@ func _ready():
 		"type": "sentence",
 		"content": "从此世界恢复和平,可喜可贺."
 	}]), "completed")
+	$CanvasLayer/Bg.visible = false
+	
+	var node = load("res://game_win/GameWin.tscn").instance()
+	self.add_child(node)
 	
 func on_battle_finished(win, node: Node):
 	node.queue_free()
