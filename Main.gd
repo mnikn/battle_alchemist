@@ -6,26 +6,26 @@ var DialogueScene = preload("res://components/dialogue/Dialogue.tscn")
 
 func _ready():
 	$Mask.visible = false	
-	var test_battle = self.create_battle(Constants.CREATURES.troll, 
-	[
-		Constants.ELEMENTS.fire,
-		Constants.ELEMENTS.fire,
-		Constants.ELEMENTS.water,
-		Constants.ELEMENTS.water,
-		Constants.ELEMENTS.mud,
-		Constants.ELEMENTS.mud,
-		Constants.ELEMENTS.concentrated,
-		Constants.ELEMENTS.concentrated,
-		Constants.ELEMENTS.warm,
-		Constants.ELEMENTS.warm,
-		Constants.ELEMENTS.firm,
-		Constants.ELEMENTS.firm,
-		Constants.ELEMENTS.wrath,
-		Constants.ELEMENTS.wrath,
-		Constants.ELEMENTS.crash,
-		Constants.ELEMENTS.crash
-	])
-	yield(test_battle, "battle_finished")
+#	var test_battle = self.create_battle(Constants.CREATURES.troll, 
+#	[
+#		Constants.ELEMENTS.fire,
+#		Constants.ELEMENTS.fire,
+#		Constants.ELEMENTS.water,
+#		Constants.ELEMENTS.water,
+#		Constants.ELEMENTS.mud,
+#		Constants.ELEMENTS.mud,
+#		Constants.ELEMENTS.concentrated,
+#		Constants.ELEMENTS.concentrated,
+#		Constants.ELEMENTS.warm,
+#		Constants.ELEMENTS.warm,
+#		Constants.ELEMENTS.firm,
+#		Constants.ELEMENTS.firm,
+#		Constants.ELEMENTS.wrath,
+#		Constants.ELEMENTS.wrath,
+#		Constants.ELEMENTS.crash,
+#		Constants.ELEMENTS.crash
+#	])
+#	yield(test_battle, "battle_finished")
 	
 	yield(self.show_dialogue([{
 		"type": "sentence",

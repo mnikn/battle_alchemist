@@ -63,7 +63,7 @@ const SKILLS = {
 		"critical_damage": 5
 	},
 	"big_rain": {
-		"id": "big_fire_ball",
+		"id": "big_rain",
 		"type": "attack",
 		"name": "暴雨术",
 		"weak_damage": 3,
@@ -174,8 +174,9 @@ const GENERATE_SKILL_TABLE = [
 	["water", "firm", "big_rain"],
 	["water_ball", "firm", "big_rain"],
 	
+	["mud", "concentrated", "stone_pike"],
+	
 	["mud", "crash", "stone_crash"],
-	["mud", "firm", "stone_pike"],
 	["mud", "warm", "stone_shield"],
 	["stone_shield", "firm", "big_stone_shield"],
 	
